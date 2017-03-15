@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if is_post %}
+          <title>{{ title }}</title>
+        {% else %}
+       	  <title>Don't Expect Anything Sensible Blog</title>
+        {% endif %}
+    </head>
+    <body>
+    <div>
+      {% if is_post %}
+        {% include '_layouts/post.liquid' %}
+      {% else %}
+        {{ content }}
+      {% endif %}
+    </div>
+
+    <footer>
+      <a href="https://www.twitter.com/reallysensible" title="Don't Expect Anything Sensible on Twitter" target="_blank">Twitter</a>
+      <a href="https://www.facebook.com/dontexpectanythingsensible">Facebook</a>
+      <a href="https://www.jamestease.co.uk/games">Other games</a>
+    </footer>
+  </body>
+</html>

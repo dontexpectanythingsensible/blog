@@ -1,0 +1,6 @@
+name: test blog
+source: "./"
+dest: "build"
+ignore:
+  - .git/*
+  - build/*
