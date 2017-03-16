@@ -1,8 +1,7 @@
 extends: default.liquid
 
-title: Fish game: Adding the player and input
+title: 2
 date: 11 March 2017 12:00:00 +0000
-draft: true
 ---
 
 # Adding a player and handling input

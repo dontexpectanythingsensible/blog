@@ -1,8 +1,7 @@
-extends default.liquid
+extends: default.liquid
 
-title: Sending messages between components
+title: 3
 date: 12 March 2017 12:00:00 +0000
-draft: true
 ---
 
 # Sending messages between components in Unity
