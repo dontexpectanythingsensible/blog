@@ -1,4 +1,4 @@
-name: test blog
+name: development blog
 source: "./"
 dest: "build"
 ignore:

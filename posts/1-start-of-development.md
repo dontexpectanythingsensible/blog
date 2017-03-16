@@ -1,6 +1,6 @@
 extends: default.liquid
 
-title: Fish game started!
+title: Fish game started
 date: 8 March 2017 12:00:30 +0000
 ---
 
@@ -10,7 +10,7 @@ When I was playing Stardew Valley last year, I really enjoyed the fishing mini-g
 
 To keep things interesting, you won't know the type of fish until it's been caught; instead, a generic fish icon will be used, although the speed and frequency of movement will change depending on the type of fish. There will also be collectables in the fishing screen which appear away from the fish, so you have a choice between carrying on catching the fish or risking it get away by going for the collectable. Both these elements are present in the Stardew Valley version, and are both things I really enjoyed.
 
-##Tools
+## Tools
 
 I'm going to use Unity to make this game - I haven't used Unity before, but there are a lot of tutorials and a large community around it which should make it relatively straightforward to learn how to use, and also offers export to phone apps. With my other games, I've used Javascript, so have had to use wrappers like Cordova or Electron to get non-web versions of the game, so using Unity means I can have one codebase which can export to multiple platforms with a click of a button. Joy!
 
