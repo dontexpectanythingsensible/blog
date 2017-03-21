@@ -16,6 +16,8 @@ The player needs to be able to move up and down to chase the fish, so I've added
 
 For phones I'll implement tap to move up, and this one-key approach should make changing key-bindings easier in the future.
 
+<div style='position:relative;padding-bottom:100%;max-width:500px;margin:auto'><iframe src='https://gfycat.com/ifr/PersonalTintedBlackfly' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+
 ## Collisions
 
 To catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish I added collision detection.

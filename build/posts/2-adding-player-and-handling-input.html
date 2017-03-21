@@ -16,6 +16,7 @@
 <p>The player character is an abstract image of a rectangle; I'll probably keep this in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.</p>
 <p>The player needs to be able to move up and down to chase the fish, so I've added basic keyboard controls (just the up key). Gravity will pull the player down, so you can't directly control your height - you can move up the screen, but will have to rely on gravity if the fish moves down the screen. This adds a bit of challenge: if you could precisely move up and down the screen, it would be far too easy to keep your avatar over the target.</p>
 <p>For phones I'll implement tap to move up, and this one-key approach should make changing key-bindings easier in the future.</p>
+<div style='position:relative;padding-bottom:100%;max-width:500px;margin:auto'><iframe src='https://gfycat.com/ifr/PersonalTintedBlackfly' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
 <h2>Collisions</h2>
 <p>To catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish I added collision detection.</p>
 <ul>
