@@ -2,6 +2,7 @@ extends: default.liquid
 
 title: Fish game started
 date: 8 March 2017 12:00:30 +0000
+description: I'm creating a new game about fishing, heavily inspired by Stardew Valley.
 ---
 
 # Fish game devlog
