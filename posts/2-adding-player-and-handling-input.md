@@ -8,7 +8,7 @@ date: 11 March 2017 12:00:00 +0000
 
 Generally, games involve a player being able to interact with things, and my fish game was completely lacking these. First things first: a player character is now in the game:
 
-![The player character](img/player/.png)
+![The player character](img/player.png)
 
 Lovely, isn't it? The player character is just a rectangle; I'll probably keep this in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.
 
@@ -16,17 +16,12 @@ The player needs to be able to move up and down to chase the fish, so I've added
 
 For phones I'll implement tap to move up, and this one-key approach should make changing key-bindings easier in the future.
 
-<div style='position:relative;min-height:450px;max-width:500px;margin:auto'>
+<div class="video">
   <iframe src='https://gfycat.com/ifr/PersonalTintedBlackfly' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
 </div>
 
 ## Collisions
 
-To catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish I added collision detection.
+To catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish I added collision detection. Unity has a few methods which make this pretty easy; I'm using the trigger methods, since I only need to detect whether the player and fish are overlapping. The other set of methods are collider methods, which should be used when two components need to apply forces to each other.
 
-
-- added player sprite
-- key handling
-- player needs to collide with fish
-- isTarget
-- Collided vs collision
+<!-- TODO: video of hovering over fish with console -->
