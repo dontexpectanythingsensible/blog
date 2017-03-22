@@ -8,7 +8,7 @@ date: 11 March 2017 12:00:00 +0000
 
 Generally, games involve a player being able to interact with things, and my fish game was completely lacking these. First things first: a player character is now in the game:
 
-TODO add player sprite image
+![](img/player.png)
 
 The player character is an abstract image of a rectangle; I'll probably keep this in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.
 
