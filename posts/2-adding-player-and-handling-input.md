@@ -8,15 +8,17 @@ date: 11 March 2017 12:00:00 +0000
 
 Generally, games involve a player being able to interact with things, and my fish game was completely lacking these. First things first: a player character is now in the game:
 
-TODO add player sprite image
+![The player character](img/player/.png)
 
-The player character is an abstract image of a rectangle; I'll probably keep this in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.
+Lovely, isn't it? The player character is just a rectangle; I'll probably keep this in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.
 
 The player needs to be able to move up and down to chase the fish, so I've added basic keyboard controls (just the up key). Gravity will pull the player down, so you can't directly control your height - you can move up the screen, but will have to rely on gravity if the fish moves down the screen. This adds a bit of challenge: if you could precisely move up and down the screen, it would be far too easy to keep your avatar over the target.
 
 For phones I'll implement tap to move up, and this one-key approach should make changing key-bindings easier in the future.
 
-<div style='position:relative;padding-bottom:100%;max-width:500px;margin:auto'><iframe src='https://gfycat.com/ifr/PersonalTintedBlackfly' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+<div style='position:relative;min-height:450px;max-width:500px;margin:auto'>
+  <iframe src='https://gfycat.com/ifr/PersonalTintedBlackfly' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
+</div>
 
 ## Collisions
 
