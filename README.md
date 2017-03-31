@@ -1,4 +1,4 @@
-Development log for our fishing game.
+[Development log](https://fish.dontexpectanythingsensible.uk) for our fishing game.
 
 ![](img/first-screenshot.png)
 
