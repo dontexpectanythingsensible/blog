@@ -15,7 +15,8 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="stylesheet" href="/css/normalize.min.css">
-        <link rel="stylesheet" href="/css/main.css">
+        {% comment %} bad cachebuster - cant access 'now' or config {% endcomment %}
+        <link rel="stylesheet" href="/css/main.css?v=1">
 
         <!--[if lt IE 9]>
           <script src="/js/vendor/html5shiv.js"></script>
@@ -33,13 +34,6 @@
             <h1 class="title">
                 <a href="/" title="Home">Don't Expect Anything Sensible</a>
             </h1>
-<!--             <nav>
-                <ul>
-                    <li><a href="#">nav ul li a</a></li>
-                    <li><a href="#">nav ul li a</a></li>
-                    <li><a href="#">nav ul li a</a></li>
-                </ul>
-            </nav> -->
         </header>
 
 
@@ -72,14 +66,12 @@
 
           <nav class="footer__nav">
             <a href="https://www.jamestease.co.uk/games" title="Other games we've made">Other games</a>
+            <a href="https://www.dontexpectanythingsensible.uk" title="The Don't Expect Anything Sensible site">Main site</a>
             <a href="https://www.twitter.com/reallysensible" title="Don't Expect Anything Sensible on Twitter" target="_blank">Twitter</a>
-            <a href="https://www.facebook.com/dontexpectanythingsensible" title="Suppose we need a facebook page">Facebook</a>
+            <a href="https://www.facebook.com/dontexpectanythingsensible" title="Suppose we need a facebook page" target="_blank">Facebook</a>
           </nav>
         </footer>
 
-        <!-- <script src="/js/main.js" defer></script> -->
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
