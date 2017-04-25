@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        
+          <title>Making progress :: Don't Expect Anything Sensible</title>
+        
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="/css/normalize.min.css">
+        
+        <link rel="stylesheet" href="/css/main.css?v=201703311048">
+
+        <!--[if lt IE 9]>
+          <script src="/js/vendor/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!--[if IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <header class="header clearfix">
+              <a href="/" class="title" title="Home">Don't Expect Anything Sensible</a>
+        </header>
+
+
+        <main class="main clearfix">
+          
+            <article class="article">
+  <h1>Making progress</h1>
+<p>In <a href="/posts/2-adding-player-and-handling-input.html">the last post</a>, I had added a player and could move up or down. The next step is being able to catch a fish, and showing how close the player is to either catching it or the fish escaping, via a progress bar.</p>
+<p>The progress bar is a simple rectangular sprite, which is scaled up or down depending on how much progress is made. Progress is increased when the player is over the fish, and decreased when the fish has escaped.</p>
+<h2>Catching the fish</h2>
+<p>To be able to catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish I added collision detection. Unity has a few methods which make this pretty easy; I'm using the trigger methods, since I only need to detect whether the player and fish are overlapping. The other set of methods are collider methods, which should be used when two components need to apply forces to each other.</p>
+<p>The fish sprite is set to be a trigger through the Unity GUI: this means the trigger callbacks will be called, rather than the collider functions. Then, in the player controller script, I set the trigger callbacks and check whether the object collided with is the fish:</p>
+<pre style="background-color:#2b303b">
+<span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> progress is a component, set via GUI
+</span><span style="background-color:#2b303b;color:#b48ead;">public</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">GameObject</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">progress</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> the amount to update the progress bar by
+</span><span style="background-color:#2b303b;color:#b48ead;">private</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#b48ead;">const</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#b48ead;">int</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">MOVE_AMOUT</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">=</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#d08770;">5</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> OnTriggerEnter - when the player wasn&#39;t over the trigger but now is (last frame compared with this)
+</span><span style="background-color:#2b303b;color:#b48ead;">void</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#8fa1b3;">OnTriggerEnter2D</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">Collider2D</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">other</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> check to see if the trigger we&#39;ve collided with is the fish sprite
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> Tags are set through the GUI and are strings
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#b48ead;">if</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#bf616a;">other</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">gameObject</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">CompareTag</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#a3be8c;">Fish</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">    </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> we&#39;re over the fish! Tell the progress bar to update
+</span><span style="background-color:#2b303b;color:#c0c5ce;">    </span><span style="background-color:#2b303b;color:#c0c5ce;">progress</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">SendMessage</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#a3be8c;">updateProgress</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#c0c5ce;">,</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">MOVE_AMOUT</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> called if in the last frame we were colliding with the trigger, and we still are
+</span><span style="background-color:#2b303b;color:#b48ead;">void</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#8fa1b3;">OnTriggerStay2D</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">Collider2D</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">other</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#b48ead;">if</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#bf616a;">other</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">gameObject</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">CompareTag</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#a3be8c;">Fish</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">    </span><span style="background-color:#2b303b;color:#c0c5ce;">progress</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">SendMessage</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#a3be8c;">updateProgress</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#c0c5ce;">,</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">MOVE_AMOUT</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> called if we were colliding in the last frame, and are no longer
+</span><span style="background-color:#2b303b;color:#b48ead;">void</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#8fa1b3;">OnTriggerExit2D</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">Collider2D</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">other</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#b48ead;">if</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#bf616a;">other</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">gameObject</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">CompareTag</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#a3be8c;">Fish</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">    </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> like above, tell the progress bar to update.
+</span><span style="background-color:#2b303b;color:#c0c5ce;">    </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> This time, it should reduce since we&#39;re no longer over the fish
+</span><span style="background-color:#2b303b;color:#c0c5ce;">    </span><span style="background-color:#2b303b;color:#c0c5ce;">progress</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">SendMessage</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#a3be8c;">updateProgress</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#c0c5ce;">,</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">-</span><span style="background-color:#2b303b;color:#bf616a;">MOVE_AMOUT</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span></pre>
+<p>This bit of code tells the progress bar to update, either a positive or negative amount, based on whether or not the player is currently hovering over the fish.</p>
+<p>There's a bit of discussion about whether <code>SendMessage</code> is a relatively expensive way to update components. Since I currently have very few components in my game, this doesn't seem to be a problem, and <code>SendMessage</code> is a very simple way of implementing this functionality. If in the future this code seems to be causing performance problems, then I'll have to revisit it, but for now, it seems fine.</p>
+<h2>Scaling</h2>
+<p>To give visual indication about how close the player is to losing or catching a fish, the progress bar needs to scale according to the progress value.</p>
+<pre style="background-color:#2b303b">
+<span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> public so I can set the inital value via GUI
+</span><span style="background-color:#2b303b;color:#b48ead;">public</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#b48ead;">void</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">progress</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> this is the method called by the `SendMessage` call above
+</span><span style="background-color:#2b303b;color:#b48ead;">public</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#b48ead;">void</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#8fa1b3;">updateProgress</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#b48ead;">int</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">amount</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#bf616a;">this</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">progress</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">+=</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">amount</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#b48ead;">float</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">percent</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">=</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">this</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">progress</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">/</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#d08770;">100</span><span style="background-color:#2b303b;color:#b48ead;">f</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> scale the sprite vertically (the y axis) and keep x and z as they are
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#c0c5ce;">transform</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">localScale</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">=</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">new</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">Vector3</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#d08770;">1</span><span style="background-color:#2b303b;color:#c0c5ce;">,</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">percent</span><span style="background-color:#2b303b;color:#c0c5ce;">,</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#d08770;">1</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span></pre>
+<p>The scale is changed into a percentage, otherwise adding 1 to the progress will double the size of the sprite (i.e. scales from <code>Vector3(1, 1, 1)</code> into <code>Vector3(1, 2, 1)</code>).</p>
+<p>A nice improvement to this would be to change the colour based on how close the player is to succeeding or failing, to reinforce the feedback to the player.</p>
+
+</article>
+
+          
+        </main> <!-- #main -->
+
+
+        <footer class="footer">
+          <div id="mc_embed_signup">
+            <form action="//dontexpectanythingsensible.us12.list-manage.com/subscribe/post?u=d7237191d3f06f411bc30d2e2&amp;id=b4f60794af" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+                <div class="mc-field-group">
+                  <label for="mce-EMAIL" id="email-label" class="label">For updates and announcements, sign up here:</label>
+                  <input type="email" value="" aria-labelledby="email-label" placeholder="you@gmail.com" name="EMAIL" class="required email input" id="mce-EMAIL">
+                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_d7237191d3f06f411bc30d2e2_b4f60794af" tabindex="-1" value=""></div>
+              </div>
+            </form>
+          </div>
+
+          <nav class="footer__nav">
+            <a href="https://www.jamestease.co.uk/games" title="Other games we've made">Other games</a>
+            <a href="https://www.dontexpectanythingsensible.uk" title="The Don't Expect Anything Sensible site">Main site</a>
+            <a href="https://www.twitter.com/reallysensible" title="Don't Expect Anything Sensible on Twitter" target="_blank">Twitter</a>
+            <a href="https://www.facebook.com/dontexpectanythingsensible" title="Suppose we need a facebook page" target="_blank">Facebook</a>
+          </nav>
+        </footer>
+
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-72421925-7','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>

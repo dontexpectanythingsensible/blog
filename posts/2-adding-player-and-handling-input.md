@@ -9,7 +9,7 @@ description: Being able to interact with the game is usually a good idea.
 
 Generally, games involve a player being able to interact with things, and my fish game was completely lacking these. First things first: a player character is now in the game:
 
-![The player character](img/player.png)
+![The player character](/img/player.png)
 
 Lovely, isn't it? The player character is just a rectangle; I'll probably keep this in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.
 
@@ -21,8 +21,28 @@ For phones I'll implement tap to move up, and this one-key approach should make 
   <iframe src='https://gfycat.com/ifr/PersonalTintedBlackfly' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
 </div>
 
-## Collisions
+Actually moving the player component is pretty simple - I've added a 2D body object to the component, which means I can apply forces to the component, and then in the update function I check whether the vertical axis input is pressed. If so, then I apply upward force to the component, so the player accelerates upwards while the button is pressed. I also ignore the down input - the player can only apply upwards force, and will have to rely on gravity to pull them back down.
 
-To catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish I added collision detection. Unity has a few methods which make this pretty easy; I'm using the trigger methods, since I only need to detect whether the player and fish are overlapping. The other set of methods are collider methods, which should be used when two components need to apply forces to each other.
+```cs
+public float speed;
 
-<!-- TODO: video of hovering over fish with console -->
+void FixedUpdate () {
+
+  // check the vertical input
+  float moveVertical = Input.GetAxis("Vertical");
+
+  // less than 0 means down is pressed. We don't care about that, so
+  // set back to 0 to ignore it
+  if (moveVertical < 0) {
+    moveVertical = 0;
+  }
+
+  Vector2 movement = new Vector2(0, moveVertical);
+
+  // speed is set in the GUI, so it's easy to update
+  body2d.AddForce(movement * speed);
+}
+```
+
+Now we can move up the screen by pressing a button, and the gravity will gradually pull the player back down when the button isn't pressed. As an aside, I really like how declaring variables as public in a class exposes them to the Unity GUI, which makes them really simple to tweak as you play-test.
+

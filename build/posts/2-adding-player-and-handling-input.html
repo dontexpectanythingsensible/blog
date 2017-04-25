@@ -14,7 +14,7 @@
 
         <link rel="stylesheet" href="/css/normalize.min.css">
         
-        <link rel="stylesheet" href="/css/main.css?v=1">
+        <link rel="stylesheet" href="/css/main.css?v=201703311048">
 
         <!--[if lt IE 9]>
           <script src="/js/vendor/html5shiv.js"></script>
@@ -29,27 +29,44 @@
         <![endif]-->
 
         <header class="header clearfix">
-            <h1 class="title">
-                <a href="/" title="Home">Don't Expect Anything Sensible</a>
-            </h1>
+              <a href="/" class="title" title="Home">Don't Expect Anything Sensible</a>
         </header>
 
 
         <main class="main clearfix">
           
-            <article>
+            <article class="article">
   <h1>Adding a player and handling input</h1>
 <p>Generally, games involve a player being able to interact with things, and my fish game was completely lacking these. First things first: a player character is now in the game:</p>
-<p><img src="img/player.png" alt="The player character" /></p>
+<p><img src="/img/player.png" alt="The player character" /></p>
 <p>Lovely, isn't it? The player character is just a rectangle; I'll probably keep this in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.</p>
 <p>The player needs to be able to move up and down to chase the fish, so I've added basic keyboard controls (just the up key). Gravity will pull the player down, so you can't directly control your height - you can move up the screen, but will have to rely on gravity if the fish moves down the screen. This adds a bit of challenge: if you could precisely move up and down the screen, it would be far too easy to keep your avatar over the target.</p>
 <p>For phones I'll implement tap to move up, and this one-key approach should make changing key-bindings easier in the future.</p>
 <div class="video">
   <iframe src='https://gfycat.com/ifr/PersonalTintedBlackfly' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
 </div>
-<h2>Collisions</h2>
-<p>To catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish I added collision detection. Unity has a few methods which make this pretty easy; I'm using the trigger methods, since I only need to detect whether the player and fish are overlapping. The other set of methods are collider methods, which should be used when two components need to apply forces to each other.</p>
-<!-- TODO: video of hovering over fish with console -->
+<p>Actually moving the player component is pretty simple - I've added a 2D body object to the component, which means I can apply forces to the component, and then in the update function I check whether the vertical axis input is pressed. If so, then I apply upward force to the component, so the player accelerates upwards while the button is pressed. I also ignore the down input - the player can only apply upwards force, and will have to rely on gravity to pull them back down.</p>
+<pre style="background-color:#2b303b">
+<span style="background-color:#2b303b;color:#b48ead;">public</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#b48ead;">float</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">speed</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#b48ead;">void</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#8fa1b3;">FixedUpdate</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> check the vertical input
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#b48ead;">float</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">moveVertical</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">=</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">Input</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">GetAxis</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#a3be8c;">Vertical</span><span style="background-color:#2b303b;color:#c0c5ce;">&quot;</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> less than 0 means down is pressed. We don&#39;t care about that, so
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> set back to 0 to ignore it
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#b48ead;">if</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#bf616a;">moveVertical</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">&lt;</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#d08770;">0</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">{</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">    </span><span style="background-color:#2b303b;color:#bf616a;">moveVertical</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">=</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#d08770;">0</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#c0c5ce;">Vector2</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">movement</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">=</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">new</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">Vector2</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#d08770;">0</span><span style="background-color:#2b303b;color:#c0c5ce;">,</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">moveVertical</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#65737e;">//</span><span style="background-color:#2b303b;color:#65737e;"> speed is set in the GUI, so it&#39;s easy to update
+</span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#c0c5ce;">body2d</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">AddForce</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#bf616a;">movement</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">*</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">speed</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
+</span></pre>
+<p>Now we can move up the screen by pressing a button, and the gravity will gradually pull the player back down when the button isn't pressed. As an aside, I really like how declaring variables as public in a class exposes them to the Unity GUI, which makes them really simple to tweak as you play-test.</p>
 
 </article>
 
