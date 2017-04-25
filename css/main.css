@@ -1,5 +1,5 @@
-/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
-
+/*grey #383e3a*/
+/*green #76b556*/
 html {
     color: #222;
     font-size: 16px;
@@ -162,6 +162,13 @@ img {
 .posts__description {
     margin-top: 0.25rem;
     margin-bottom: 1.5rem;
+}
+
+.button {
+    background: #76b556;
+    border: 0;
+    border-radius: 2px;
+    color: white;
 }
 
 /* ==========================================================================
