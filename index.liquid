@@ -6,6 +6,6 @@ extends: default.liquid
 
   {% for post in posts %}
     <h4 class="posts__title"><a href="{{ post.path }}" title="{{ post.title }}">{{ post.title }}</a></h4>
-    <p>{{ post.description }}</p>
+    <p class="posts__description">{{ post.description }}</p>
   {% endfor %}
 </article>

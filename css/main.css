@@ -90,6 +90,11 @@ img {
     max-width: 960px;
 }
 
+.logo {
+    width: 60px;
+    margin-right: 1rem;
+}
+
 .title {
     margin: 0;
     padding: 0;
@@ -141,6 +146,11 @@ img {
 /* posts on main page*/
 .posts__title {
     margin-bottom: 0;
+}
+
+.posts__description {
+    margin-top: 0.25rem;
+    margin-bottom: 1.5rem;
 }
 
 /* ==========================================================================
