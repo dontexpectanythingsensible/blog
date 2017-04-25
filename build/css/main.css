@@ -5,6 +5,7 @@ html {
     font-size: 16px;
     line-height: 1.4;
     font-family: Georgia, Times, "Times New Roman", serif;
+    background: #fffff5;
 }
 
 ::-moz-selection {
@@ -62,6 +63,15 @@ h6 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+a {
+    color: #000;
+    font-weight: bold;
+}
+
+a:visited {
+    color: #055150;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -102,6 +112,7 @@ img {
     font-size: 1.1rem;
     color: #000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
 }
 
 .article {
