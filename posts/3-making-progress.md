@@ -1,7 +1,7 @@
 extends: default.liquid
 
 title: Making progress
-date: 12 March 2017 12:00:00 +0000
+date: 12 Mar 2017 12:00:00 +0000
 description: Catching fish, and the one that gets away
 ---
 

@@ -1,11 +1,15 @@
 extends: default.liquid
 
 title: Closing the loop
-draft: true
-date: 23 March 2017 12:00 +0000
+date: 08 May 2017 12:00:00 +0000
+description: Winning and losing UI states
 ---
 
 # Winning the game
+
+<div class="video">
+	<iframe src='https://gfycat.com/ifr/InsignificantLegitimateCusimanse' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
+</div>
 
 Now [we have a progress bar](/posts/3-making-progress.html) to show how close the player is to catching the fish, we need to add a way for the fish to actually be caught.
 
@@ -59,3 +63,6 @@ private void showLose () {
 
 Here's a video of it in action:
 
+<div class="video">
+	<iframe src='https://gfycat.com/ifr/InsignificantLegitimateCusimanse' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
+</div>

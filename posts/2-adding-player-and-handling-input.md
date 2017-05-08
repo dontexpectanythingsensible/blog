@@ -1,7 +1,7 @@
 extends: default.liquid
 
 title: Adding a player and handling input
-date: 11 March 2017 12:00:00 +0000
+date: 11 Mar 2017 12:00:00 +0000
 description: Being able to interact with the game is usually a good idea.
 ---
 
