@@ -37,10 +37,10 @@
           
             <article class="article">
   <h1>Winning the game</h1>
-<div class="video">
-    <iframe src='https://gfycat.com/ifr/InsignificantLegitimateCusimanse' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
-</div>
 <p>Now <a href="/posts/3-making-progress.html">we have a progress bar</a> to show how close the player is to catching the fish, we need to add a way for the fish to actually be caught.</p>
+<video src="/img/4-game-loop.mp4" class="video" controls autoplay loop="true">
+    Sorry, your browser doesn't support video. You can <a href="/img/4-game-loop.mp4">download the video here</a>.
+</video>
 <p>To check if the fish has been caught, we added a new GameObject called <code>UIManager</code> which will handle winning and losing states, along with showing relevant text when this happens. The UIManager reads the progress value from the <code>ProgressController</code>, then shows the win state if progress is over one hundred, and the fail state if it's zero or under. The <code>ProgressController</code> stores progress as a percentage, which is why the range is between zero and one hundred.</p>
 <p>The winning and losing UI is just some text added to the scene at the moment, and the UIManager just loops over the relevant text and changes the component's <code>setActive</code> flag:</p>
 <pre style="background-color:#2b303b">
@@ -87,9 +87,9 @@
 </span><span style="background-color:#2b303b;color:#c0c5ce;">
 </span></pre>
 <p>Here's a video of it in action:</p>
-<div class="video">
-    <iframe src='https://gfycat.com/ifr/InsignificantLegitimateCusimanse' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
-</div>
+<video src="/img/4-game-loop.mp4" class="video" controls autoplay loop="true">
+    Sorry, your browser doesn't support video. You can <a href="/img/4-game-loop.mp4">download the video here</a>.
+</video>
 </article>
 
           
