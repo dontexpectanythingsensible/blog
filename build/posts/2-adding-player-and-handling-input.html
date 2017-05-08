@@ -37,15 +37,15 @@
           
             <article class="article">
   <h1>Adding a player and handling input</h1>
-<p>Generally, games involve a player being able to interact with things, and my fish game was completely lacking these. First things first: a player character is now in the game:</p>
+<p>Generally, games involve a player being able to interact with things, and our fish game was completely lacking these. First things first: a player character is now in the game:</p>
 <p><img src="/img/player.png" alt="The player character" /></p>
-<p>Lovely, isn't it? The player character is just a rectangle; I'll probably keep this in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.</p>
-<p>The player needs to be able to move up and down to chase the fish, so I've added basic keyboard controls (just the up key). Gravity will pull the player down, so you can't directly control your height - you can move up the screen, but will have to rely on gravity if the fish moves down the screen. This adds a bit of challenge: if you could precisely move up and down the screen, it would be far too easy to keep your avatar over the target.</p>
-<p>For phones I'll implement tap to move up, and this one-key approach should make changing key-bindings easier in the future.</p>
+<p>Lovely, isn't it? The player character is just a rectangle; this will probably be very similar in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.</p>
+<p>The player needs to be able to move up and down to chase the fish, so we now have basic keyboard controls (just the up key). Gravity will pull the player down, so you can't directly control your height - you can move up the screen, but will have to rely on gravity if the fish moves down the screen. This adds a bit of challenge: if you could precisely move up and down the screen, it would be far too easy to keep your avatar over the target.</p>
+<p>For phones keyboard controls will be replaced with tap to move up, and this one-key approach should make changing key-bindings easier in the future.</p>
 <div class="video">
   <iframe src='https://gfycat.com/ifr/PersonalTintedBlackfly' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
 </div>
-<p>Actually moving the player component is pretty simple - I've added a 2D body object to the component, which means I can apply forces to the component, and then in the update function I check whether the vertical axis input is pressed. If so, then I apply upward force to the component, so the player accelerates upwards while the button is pressed. I also ignore the down input - the player can only apply upwards force, and will have to rely on gravity to pull them back down.</p>
+<p>Actually moving the player component is pretty simple - add a 2D body object to the component, which means forces can be applied to the component, and then in the update function check whether the vertical axis input is pressed. If so, then apply upward force to the component, so the player accelerates upwards while the button is pressed. The down arrow input is ignored - the player can only apply upwards force, and will have to rely on gravity to pull them back down.</p>
 <pre style="background-color:#2b303b">
 <span style="background-color:#2b303b;color:#b48ead;">public</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#b48ead;">float</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">speed</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
 </span><span style="background-color:#2b303b;color:#c0c5ce;">
@@ -66,7 +66,7 @@
 </span><span style="background-color:#2b303b;color:#c0c5ce;">  </span><span style="background-color:#2b303b;color:#c0c5ce;">body2d</span><span style="background-color:#2b303b;color:#c0c5ce;">.</span><span style="background-color:#2b303b;color:#bf616a;">AddForce</span><span style="background-color:#2b303b;color:#c0c5ce;">(</span><span style="background-color:#2b303b;color:#bf616a;">movement</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#c0c5ce;">*</span><span style="background-color:#2b303b;color:#c0c5ce;"> </span><span style="background-color:#2b303b;color:#bf616a;">speed</span><span style="background-color:#2b303b;color:#c0c5ce;">)</span><span style="background-color:#2b303b;color:#c0c5ce;">;</span><span style="background-color:#2b303b;color:#c0c5ce;">
 </span><span style="background-color:#2b303b;color:#c0c5ce;">}</span><span style="background-color:#2b303b;color:#c0c5ce;">
 </span></pre>
-<p>Now we can move up the screen by pressing a button, and the gravity will gradually pull the player back down when the button isn't pressed. As an aside, I really like how declaring variables as public in a class exposes them to the Unity GUI, which makes them really simple to tweak as you play-test.</p>
+<p>Now we can move up the screen by pressing a button, and the gravity will gradually pull the player back down when the button isn't pressed.</p>
 
 </article>
 
