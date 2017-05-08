@@ -1,6 +1,6 @@
 extends: default.liquid
 
-title: 5 Win and Fail states
+title: Closing the loop
 draft: true
 date: 23 March 2017 12:00 +0000
 ---
@@ -9,4 +9,4 @@ date: 23 March 2017 12:00 +0000
 
 # Winning the game
 
-Now [I have a progress bar](/posts/4-winning-the-game.html) to show how close the player is to catching the fish, I need to add a way for the fish to actually be caught.
+Now [we have a progress bar](/posts/3-making-progress.html) to show how close the player is to catching the fish, we need to add a way for the fish to actually be caught.
