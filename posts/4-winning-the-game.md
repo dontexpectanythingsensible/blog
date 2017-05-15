@@ -3,6 +3,7 @@ extends: default.liquid
 title: Closing the loop
 date: 08 May 2017 12:00:00 +0000
 description: Winning and losing UI states
+slug: winning-the-game
 ---
 
 # Winning the game
