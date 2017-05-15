@@ -37,7 +37,7 @@
           
             <article class="article">
   <h1>Making progress</h1>
-<p>In <a href="/posts/2-adding-player-and-handling-input.html">the last post</a>, we added a player and could move up or down. The next step is being able to catch a fish, and showing how close the player is to either catching it or the fish escaping, via a progress bar.</p>
+<p>In <a href="/posts/adding-player-and-handling-input">the last post</a>, we added a player and could move up or down. The next step is being able to catch a fish, and showing how close the player is to either catching it or the fish escaping, via a progress bar.</p>
 <p>The progress bar is a simple rectangular sprite, which is scaled up or down depending on how much progress is made. Progress is increased when the player is over the fish, and decreased when the fish has escaped.</p>
 <h2>Catching the fish</h2>
 <p>To be able to catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish we need collision detection. Unity has a few methods which make this pretty easy; we're using the trigger methods, since we only need to detect whether the player and fish are overlapping. The other set of methods are collider methods, which should be used when two components need to apply forces to each other.</p>

@@ -8,7 +8,7 @@ slug: winning-the-game
 
 # Winning the game
 
-Now [we have a progress bar](/posts/3-making-progress.html) to show how close the player is to catching the fish, we need to add a way for the fish to actually be caught.
+Now [we have a progress bar](/posts/making-progress) to show how close the player is to catching the fish, we need to add a way for the fish to actually be caught.
 
 <video src="/img/4-game-loop.mp4" class="video" controls autoplay loop="true">
 	Sorry, your browser doesn't support video. You can <a href="/img/4-game-loop.mp4">download the video here</a>.
