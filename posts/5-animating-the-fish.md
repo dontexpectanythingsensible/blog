@@ -1,12 +1,12 @@
 extends: default.liquid
 
-title: Animating the fish
+title: Animations and movement
 date: 15 May 2017 12:00:00 +0000
-description: Making the fish move around
+description: Making the fish fun to catch
 slug: animating-the-fish
 ---
 
-In the inital versions of the game, the fish moved up and down in a linear fashion for a set period of time (see the video from <a href="/posts/winning-the-game" title="Chapter 4 - Winning the game">the last post</a>:)
+In the inital versions of the game, the fish moved up and down in a linear fashion for a set period of time (see the video from <a href="/posts/winning-the-game" title="Chapter 4 - Winning the game">the last post</a>):
 
 <video src="/img/4-game-loop.mp4" class="video" controls autoplay loop="true">
 	Sorry, your browser doesn't support video. You can <a href="/img/4-game-loop.mp4">download the video here</a>.
