@@ -20,5 +20,5 @@ We're going to use [Unity](https://unity3d.com) to make this game - although we 
 
 Quick prototype: we dragged a sprite into Unity and it rendered, so here it is!
 
-![](../img/first-screenshot.png)
+![](/img/first-screenshot.png)
 
