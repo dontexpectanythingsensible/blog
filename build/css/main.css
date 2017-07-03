@@ -129,6 +129,57 @@ img {
     margin-top: 0;
 }
 
+.post__nav {
+    display: block;
+    max-width: 960px;
+    margin: 1rem auto;
+}
+
+.post__nav--prev,
+.post__nav--next,
+.post__nav--all {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0;
+}
+
+/*@media only screen and (min-width: 950px) {
+    .post__nav--prev,
+    .post__nav--next,
+    .post__nav--all {
+        display: inline-block;
+        width: 33%;
+    }
+
+    .post__nav--all {
+        text-align: center;
+    }
+
+    .post__nav--next {
+        text-align: right;
+    }
+}
+*/
+.email.input {
+    padding: 0.25rem 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0;
+    min-width: 300px;
+    max-width: 100%;
+}
+
+pre {
+    font-family: Menlo, Monaco, Consolas, Inconsolata, Courier, monospace;
+    padding: 0.5rem 0.75rem;
+}
+
+code {
+    background: #c3deb4;
+    color: #395b28;
+    font-family: Menlo, Monaco, Consolas, Inconsolata, Courier, monospace;
+    padding: 0 0.25rem;
+}
 
 /* footer ------------------------------ */
 .footer {

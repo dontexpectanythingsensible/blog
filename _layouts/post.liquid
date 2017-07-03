@@ -1,3 +1,13 @@
 <article class="article">
   {{content}}
 </article>
+
+<nav class="post__nav">
+{% if previous %}
+   <a class="post__nav--prev" href="/{{previous.path}}">&laquo; {{previous.title}}</a>
+{% endif %}
+{% if next %}
+   <a class="post__nav--next" href="/{{next.path}}">{{next.title}} &raquo;</a>
+{% endif %}
+    <a href="/" class="post__nav--all">All posts</a>
+</nav>

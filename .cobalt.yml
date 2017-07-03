@@ -1,5 +1,5 @@
 name: development blog
-source: "./"
+source: "."
 dest: "build"
 ignore:
   - .git/*
