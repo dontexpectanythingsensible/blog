@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         
-          <title>Making progress :: Don't Expect Anything Sensible</title>
+          <title>Don't Expect Anything Sensible</title>
         
 
         <meta name="description" content="">
@@ -29,18 +29,14 @@
         <![endif]-->
 
         <header class="header clearfix">
-          <a href="/" class="title" title="List of posts">
-            <img src="/img/dontexpectanythingsensible.png" class="logo" />
-            <div class="header__text">Shimi Paper Fish<span class="header__subtext">by Don't Expect Anything Sensible</span></div>
-          </a>
+          <a href="/" class="title" title="List of posts"><img src="/img/dontexpectanythingsensible.png" class="logo" />Shimi Paper Fish<br />by Don't Expect Anything Sensible</a>
         </header>
 
 
         <main class="main clearfix">
           
-            <article class="article">
-  <h1 class="post__title">Making progress</h1>
-  <p>In <a href="/posts/adding-player-and-handling-input">the last post</a>, we added a player and could move up or down. The next step is being able to catch a fish, and showing how close the player is to either catching it or the fish escaping, via a progress bar.</p>
+            <h1>Making progress</h1>
+<p>In <a href="/posts/adding-player-and-handling-input">the last post</a>, we added a player and could move up or down. The next step is being able to catch a fish, and showing how close the player is to either catching it or the fish escaping, via a progress bar.</p>
 <p>The progress bar is a simple rectangular sprite, which is scaled up or down depending on how much progress is made. Progress is increased when the player is over the fish, and decreased when the fish has escaped.</p>
 <h2>Catching the fish</h2>
 <p>To be able to catch a fish, you need to keep the player over the fish until the progress bar has been filled, so being able to detect whether or not the player is over the fish we need collision detection. Unity has a few methods which make this pretty easy; we're using the trigger methods, since we only need to detect whether the player and fish are overlapping. The other set of methods are collider methods, which should be used when two components need to apply forces to each other.</p>
@@ -103,17 +99,6 @@
 <p>The scale is changed into a percentage, otherwise adding 1 to the progress will double the size of the sprite (i.e. scales from <code>Vector3(1, 1, 1)</code> into <code>Vector3(1, 2, 1)</code>).</p>
 <p>A nice improvement to this would be to change the colour based on how close the player is to succeeding or failing, to reinforce the feedback to the player.</p>
 
-</article>
-
-<nav class="post__nav">
-
-   <a class="post__nav--prev" href="/posts/adding-player-and-handling-input/index.html">&laquo; Adding a player and handling input</a>
-
-
-   <a class="post__nav--next" href="/posts/winning-the-game/index.html">Closing the loop &raquo;</a>
-
-    <a href="/" class="post__nav--all">All posts</a>
-</nav>
           
         </main> <!-- #main -->
 

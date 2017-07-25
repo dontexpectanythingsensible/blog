@@ -5,6 +5,6 @@ ignore: [.git/*, build/*]
 post_path: /posts/:slug
 
 rss: rss.xml
-name: Fish game devlog - Don't Expect Anything Sensible
+name: Shimi Paper Fish devlog - Don't Expect Anything Sensible
 description: The on-going development diary of a fishing game
-link: https://fish.dontexpectanythingsensible.uk
+link: https://shimipaperfish.dontexpectanythingsensible.uk

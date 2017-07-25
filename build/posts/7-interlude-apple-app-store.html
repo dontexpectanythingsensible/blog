@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         
-          <title>Fish game started :: Don't Expect Anything Sensible</title>
+          <title>Don't Expect Anything Sensible</title>
         
 
         <meta name="description" content="">
@@ -29,34 +29,23 @@
         <![endif]-->
 
         <header class="header clearfix">
-          <a href="/" class="title" title="List of posts">
-            <img src="/img/dontexpectanythingsensible.png" class="logo" />
-            <div class="header__text">Shimi Paper Fish<span class="header__subtext">by Don't Expect Anything Sensible</span></div>
-          </a>
+          <a href="/" class="title" title="List of posts"><img src="/img/dontexpectanythingsensible.png" class="logo" />Shimi Paper Fish<br />by Don't Expect Anything Sensible</a>
         </header>
 
 
         <main class="main clearfix">
           
-            <article class="article">
-  <h1 class="post__title">Fish game started</h1>
-  <p>When playing <a href="http://stardewvalley.net/">Stardew Valley</a> last year, we really enjoyed the fishing mini-game, so decided to make our own version which can also be played on a phone. The fishing game will be pretty similar to Stardew Valley's version: you will move a bar up and down the screen based on clicks or taps to try to keep the bar over a fish. While the bar is over the fish, a progress meter fills up, and when the bar is not over the fish, the meter empties. If the meter fills entirely you've caught the fish, and if it empties then the fish has escaped and you lose.</p>
-<p>To keep things interesting, you won't know the type of fish until it's been caught; instead, a generic fish icon will be used, although the speed and frequency of movement will change depending on the type of fish. There will also be collectables in the fishing screen which appear away from the fish, so you have a choice between carrying on catching the fish or risking it get away by going for the collectable. Both these elements are present in the Stardew Valley version, and are both things I really enjoyed.</p>
-<h2>Tools</h2>
-<p>We're going to use <a href="https://unity3d.com">Unity</a> to make this game - although we haven't used Unity before, there are a lot of tutorials and a large community around it which should make it relatively straightforward to learn how to use, and also offers export to phone apps. With our other games, we used Javascript so have had to use wrappers like <a href="https://cordova.apache.org/">Cordova</a> or <a href="https://electron.atom.io/">Electron</a> to get non-web versions of the game. Using Unity means we can have one codebase which can export to multiple platforms with a click of a button. Joy!</p>
-<h2>Progress pics</h2>
-<p>Quick prototype: we dragged a sprite into Unity and it rendered, so here it is!</p>
-<p><img src="/img/first-screenshot.png" alt="" /></p>
+            <p>We've been quiet for the last couple of weeks since we're busy preparing one of our other games, <a href="https://www.jamestease.co.uk/games/pairs/">Pairs</a>, for release on iOS devices.</p>
+<p>Since the game is written in Phaser, and is <a href="https://play.google.com/store/apps/details?id=uk.dontexpectanythingsensible.pairspro">already out for Android</a>, we thought this would be a relatively quick process - we'd just need to run the relevant Cordova command and upload the built app, similarly to the Android process. Well, not quite.</p>
+<p>Apple's review process sounds like a good idea - it prevents broken or low-effort apps from flooding the app store, which means that all apps available for users have a minimum level of quality. However, the process itself, and especially the tooling around it are quite lacking. Our original submission of Pairs failed the review process in two places:</p>
+<ol>
+<li>one icon was different on a 12&quot; retina iPad (icons should be identical except for size)</li>
+<li>we used the word 'memory' in one of the app store fields.</li>
+</ol>
+<p>The word 'memory' is banned from app titles because a German games company has managed to copyright it in a few European countries, which is annoying enough by itself. However, Apple don't have a way for apps to be selectively excluded from certain countries, so instead there's just a blanket ban on a common English word so Apple don't have to deal with copyright lawsuits.</p>
+<p>Both of these issues seem like they should be automated so they can be caught long before app submission and the days of waiting before any problems come to light. The icon might be slightly trickier to automate, but even a way to see all icons in the app next to each other would make things a lot clearer.</p>
+<p>Anyway, we're back in the review cycle, so work on the fishing game will be continuing very soon!</p>
 
-</article>
-
-<nav class="post__nav">
-
-
-   <a class="post__nav--next" href="/posts/adding-player-and-handling-input/index.html">Adding a player and handling input &raquo;</a>
-
-    <a href="/" class="post__nav--all">All posts</a>
-</nav>
           
         </main> <!-- #main -->
 

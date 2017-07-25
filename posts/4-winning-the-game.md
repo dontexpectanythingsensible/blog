@@ -6,8 +6,6 @@ description: Winning and losing UI states
 slug: winning-the-game
 ---
 
-# Winning the game
-
 Now [we have a progress bar](/posts/making-progress) to show how close the player is to catching the fish, we need to add a way for the fish to actually be caught.
 
 <video src="/img/4-game-loop.mp4" class="video" controls autoplay loop="true">

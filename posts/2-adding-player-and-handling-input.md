@@ -6,8 +6,6 @@ description: Being able to interact with the game is usually a good idea.
 slug: adding-player-and-handling-input
 ---
 
-# Adding a player and handling input
-
 Generally, games involve a player being able to interact with things, and our fish game was completely lacking these. First things first: a player character is now in the game:
 
 ![The player character](/img/player.png)

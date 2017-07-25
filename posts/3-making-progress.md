@@ -6,8 +6,6 @@ description: Catchy fish!
 slug: making-progress
 ---
 
-# Making progress
-
 In [the last post](/posts/adding-player-and-handling-input), we added a player and could move up or down. The next step is being able to catch a fish, and showing how close the player is to either catching it or the fish escaping, via a progress bar.
 
 The progress bar is a simple rectangular sprite, which is scaled up or down depending on how much progress is made. Progress is increased when the player is over the fish, and decreased when the fish has escaped.

@@ -15,6 +15,8 @@ Apple's review process sounds like a good idea - it prevents broken or low-effor
 1. one icon was different on a 12" retina iPad (icons should be identical except for size)
 2. we used the word 'memory' in one of the app store fields.
 
+## Copyright
+
 The word 'memory' is banned from app titles because a German games company has managed to copyright it in a few European countries, which is annoying enough by itself. However, Apple don't have a way for apps to be selectively excluded from certain countries, so instead there's just a blanket ban on a common English word so Apple don't have to deal with copyright lawsuits.
 
 Both of these issues seem like they should be automated so they can be caught long before app submission and the days of waiting before any problems come to light. The icon might be slightly trickier to automate, but even a way to see all icons in the app next to each other would make things a lot clearer.

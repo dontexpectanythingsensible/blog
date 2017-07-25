@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         
-          <title>Adding a player and handling input :: Don't Expect Anything Sensible</title>
+          <title>Don't Expect Anything Sensible</title>
         
 
         <meta name="description" content="">
@@ -29,18 +29,14 @@
         <![endif]-->
 
         <header class="header clearfix">
-          <a href="/" class="title" title="List of posts">
-            <img src="/img/dontexpectanythingsensible.png" class="logo" />
-            <div class="header__text">Shimi Paper Fish<span class="header__subtext">by Don't Expect Anything Sensible</span></div>
-          </a>
+          <a href="/" class="title" title="List of posts"><img src="/img/dontexpectanythingsensible.png" class="logo" />Shimi Paper Fish<br />by Don't Expect Anything Sensible</a>
         </header>
 
 
         <main class="main clearfix">
           
-            <article class="article">
-  <h1 class="post__title">Adding a player and handling input</h1>
-  <p>Generally, games involve a player being able to interact with things, and our fish game was completely lacking these. First things first: a player character is now in the game:</p>
+            <h1>Adding a player and handling input</h1>
+<p>Generally, games involve a player being able to interact with things, and our fish game was completely lacking these. First things first: a player character is now in the game:</p>
 <p><img src="/img/player.png" alt="The player character" /></p>
 <p>Lovely, isn't it? The player character is just a rectangle; this will probably be very similar in the final game since you need to be able to see if you're over the fish, and this is nice and thin at the moment.</p>
 <p>The player needs to be able to move up and down to chase the fish, so we now have basic keyboard controls (just the up key). Gravity will pull the player down, so you can't directly control your height - you can move up the screen, but will have to rely on gravity if the fish moves down the screen. This adds a bit of challenge: if you could precisely move up and down the screen, it would be far too easy to keep your avatar over the target.</p>
@@ -71,17 +67,6 @@
 </span></pre>
 <p>Now we can move up the screen by pressing a button, and the gravity will gradually pull the player back down when the button isn't pressed.</p>
 
-</article>
-
-<nav class="post__nav">
-
-   <a class="post__nav--prev" href="/posts/start-of-development/index.html">&laquo; Fish game started</a>
-
-
-   <a class="post__nav--next" href="/posts/making-progress/index.html">Making progress &raquo;</a>
-
-    <a href="/" class="post__nav--all">All posts</a>
-</nav>
           
         </main> <!-- #main -->
 

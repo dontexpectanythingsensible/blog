@@ -29,13 +29,17 @@
         <![endif]-->
 
         <header class="header clearfix">
-          <a href="/" class="title" title="List of posts"><img src="/img/dontexpectanythingsensible.png" class="logo" />Shimi Paper Fish by Don't Expect Anything Sensible</a>
+          <a href="/" class="title" title="List of posts">
+            <img src="/img/dontexpectanythingsensible.png" class="logo" />
+            <div class="header__text">Shimi Paper Fish<span class="header__subtext">by Don't Expect Anything Sensible</span></div>
+          </a>
         </header>
 
 
         <main class="main clearfix">
           
             <article class="article">
+  <h1 class="post__title">Interlude - Apple's App Store</h1>
   <p>We've been quiet for the last couple of weeks since we're busy preparing one of our other games, <a href="https://www.jamestease.co.uk/games/pairs/">Pairs</a>, for release on iOS devices.</p>
 <p>Since the game is written in Phaser, and is <a href="https://play.google.com/store/apps/details?id=uk.dontexpectanythingsensible.pairspro">already out for Android</a>, we thought this would be a relatively quick process - we'd just need to run the relevant Cordova command and upload the built app, similarly to the Android process. Well, not quite.</p>
 <p>Apple's review process sounds like a good idea - it prevents broken or low-effort apps from flooding the app store, which means that all apps available for users have a minimum level of quality. However, the process itself, and especially the tooling around it are quite lacking. Our original submission of Pairs failed the review process in two places:</p>
@@ -43,6 +47,7 @@
 <li>one icon was different on a 12&quot; retina iPad (icons should be identical except for size)</li>
 <li>we used the word 'memory' in one of the app store fields.</li>
 </ol>
+<h2>Copyright</h2>
 <p>The word 'memory' is banned from app titles because a German games company has managed to copyright it in a few European countries, which is annoying enough by itself. However, Apple don't have a way for apps to be selectively excluded from certain countries, so instead there's just a blanket ban on a common English word so Apple don't have to deal with copyright lawsuits.</p>
 <p>Both of these issues seem like they should be automated so they can be caught long before app submission and the days of waiting before any problems come to light. The icon might be slightly trickier to automate, but even a way to see all icons in the app next to each other would make things a lot clearer.</p>
 <p>Anyway, we're back in the review cycle, so work on the fishing game will be continuing very soon!</p>
@@ -53,6 +58,8 @@
 
    <a class="post__nav--prev" href="/posts/art-style/index.html">&laquo; New art style and colour lerping</a>
 
+
+   <a class="post__nav--next" href="/posts/new-name-shimi-paper-fish/index.html">Shimi Paper Fish - the new name! &raquo;</a>
 
     <a href="/" class="post__nav--all">All posts</a>
 </nav>
