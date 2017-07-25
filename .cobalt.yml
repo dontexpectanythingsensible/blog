@@ -1,9 +1,7 @@
 name: development blog
 source: "."
 dest: "build"
-ignore:
-  - .git/*
-  - build/*
+ignore: [.git/*, build/*]
 post_path: /posts/:slug
 
 rss: rss.xml
