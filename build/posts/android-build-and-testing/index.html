@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         
-          <title>Don't Expect Anything Sensible</title>
+          <title>Android test builds :: Don't Expect Anything Sensible</title>
         
 
         <meta name="description" content="">
@@ -39,39 +39,28 @@
         <main class="main clearfix">
           
             <article class="article">
-  <h1>Shimi Paper Fish</h1>
-  <p>The on-going development diary of a fishing game.</p>
+  <h1 class="post__title">Android test builds</h1>
+  <p>Shimi Paperfish is designed to run on phones and tablets, so it's probably a good idea to get a version of the game running on phones as soon as possible to check that the game works, and also that it's actually fun.</p>
+<p>With this in mind, we've now got Shimi running on Android!</p>
+<div class="gallery">
+    <img src="/img/shimipaperfish-map2.png" alt="Overworld map placeholder" />
+    <img src="/img/shimipaperfish-fishing1.png" alt="Fishing" />
+    <img src="/img/shimipaperfish-fishing2.png" alt="Fishing" />
+</div>
+<p>As you can see from the screenshots, we've added an overworld map so you can choose where to go fishing (this is just a placeholder image at the moment though!), with the idea that there will be several areas where different fish are prevalent.</p>
+<p>Building for phones was really useful since it brought to light a number of things which aren't obvious when developing on a laptop. For instance, on phones the progress bar in the fishing screen disappears off the side of the screen, and a number of UI elements are far too small, despite everything seeming fine on laptops. Creating a phone version as early as possible means we can fix these things as we go, rather than having a huge backlog of work later on.</p>
+<p>We also ran into problems when building for Android - it turns out there was a bug when using Unity and newer versions of the Android SDK. The fix for this involved upgrading the version of Unity, which is always risky mid-project! Luckily the upgrade didn't cause any problems and fixed the issue we had with Android, which was a relief.</p>
+<p>As the project is still in early development, there are no public builds yet - hopefully there will be some time soon!</p>
 
-  
-    <h4 class="posts__title"><a href="posts/android-build-and-testing/index.html" title="Android test builds">Android test builds</a></h4>
-    <p class="posts__description">Loading phones to test the flow</p>
-  
-    <h4 class="posts__title"><a href="posts/new-name-shimi-paper-fish/index.html" title="Shimi Paper Fish - the new name!">Shimi Paper Fish - the new name!</a></h4>
-    <p class="posts__description">Naming things is difficult</p>
-  
-    <h4 class="posts__title"><a href="posts/interlude-apple-app-store/index.html" title="Interlude - Apple's App Store">Interlude - Apple's App Store</a></h4>
-    <p class="posts__description">Jumping through hoops to create an app</p>
-  
-    <h4 class="posts__title"><a href="posts/art-style/index.html" title="New art style and colour lerping">New art style and colour lerping</a></h4>
-    <p class="posts__description">We're trying out a new origami-inspired art style</p>
-  
-    <h4 class="posts__title"><a href="posts/animating-the-fish/index.html" title="Animations and movement">Animations and movement</a></h4>
-    <p class="posts__description">Making the fish fun to catch</p>
-  
-    <h4 class="posts__title"><a href="posts/winning-the-game/index.html" title="Closing the loop">Closing the loop</a></h4>
-    <p class="posts__description">Winning and losing UI states</p>
-  
-    <h4 class="posts__title"><a href="posts/making-progress/index.html" title="Making progress">Making progress</a></h4>
-    <p class="posts__description">Catchy fish!</p>
-  
-    <h4 class="posts__title"><a href="posts/adding-player-and-handling-input/index.html" title="Adding a player and handling input">Adding a player and handling input</a></h4>
-    <p class="posts__description">Being able to interact with the game is usually a good idea.</p>
-  
-    <h4 class="posts__title"><a href="posts/start-of-development/index.html" title="Fish game started">Fish game started</a></h4>
-    <p class="posts__description">We're creating a new game about fishing, heavily inspired by Stardew Valley.</p>
-  
 </article>
 
+<nav class="post__nav">
+
+   <a class="post__nav--prev" href="/posts/new-name-shimi-paper-fish/index.html">&laquo; Shimi Paper Fish - the new name!</a>
+
+
+    <a href="/" class="post__nav--all">All posts</a>
+</nav>
           
         </main> <!-- #main -->
 
